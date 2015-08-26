@@ -14,10 +14,11 @@
     <!-- Bootstrap Core CSS -->
     <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <link href="plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -94,37 +95,66 @@
 
         <div id="page-wrapper">
 
-            <div class=" col-lg-12 ">
 
-                <div class="inner-addon right-addon">
-                    <i class="glyphicon glyphicon-search"></i>
-                    <input type="text" class="form-control input-sm mt30" placeholder="Search" />
-                </div>
+
+            <div class="col-lg-12 pad mt30">
+
+                <table data-toggle="table" data-toolbar="#toolbar" data-search="true" data-show-refresh="true" data-show-toggle="true">
+                    <thead>
+                        <tr>
+                            <th>Audit ID</th>
+                            <th>Client</th>
+                            <th>Location</th>
+                            <th>Auditor</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Control</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#001</td>
+                            <td> Westin </td>
+                            <td> <span class="fa fa-fw fa-map-marker "></span> Velachery, Chennai</td>
+                            <td> <span class="fa fa-fw fa-user "></span> Geetha</td>
+                            <td><span class="fa fa-fw fa-calendar"></span> 27th Aug 2015</td>
+                            <td><span class="fa fa-fw fa-clock-o"></span> 11:30 AM</td>
+                            <td class="center">
+                                <a href="#" class="btn btn-xs btn-warning" title="View "><span class="fa fa-fw fa-eye   "></span></a>
+                                <a href="#" class="btn btn-xs btn-info" title="Edit "> <span class="fa fa-fw fa-pencil  "></span></a>
+                                <a href="#" class="btn btn-xs btn-danger" title="Delete "><span class="fa fa-fw fa-close   "></span></a>
+                                <a href="#" class="btn btn-xs btn-success" title="Download "><span class="fa fa-fw fa-download   "></span></a>
+                            </td>
+                            <td>Sent</td>
+                        </tr>
+
+                        <tr>
+                            <td>#002</td>
+                            <td> Grand Chola </td>
+                            <td><span class="fa fa-fw fa-map-marker "></span> Guindy,Chennai</td>
+                            <td> <span class="fa fa-fw fa-user "></span> Jeevitha</td>
+                            <td><span class="fa fa-fw fa-calendar"></span> 30th Aug 2015</td>
+                            <td><span class="fa fa-fw fa-clock-o"></span> 09:30 AM</td>
+                            <td class="center">
+                                <a href="#" class="btn btn-xs btn-warning" title="View "><span class="fa fa-fw fa-eye   "></span></a>
+                                <a href="#" class="btn btn-xs btn-info" title="Edit "> <span class="fa fa-fw fa-pencil  "></span></a>
+                                <a href="#" class="btn btn-xs btn-danger" title="Delete "><span class="fa fa-fw fa-close   "></span></a>
+                                <a href="#" class="btn btn-xs btn-success" title="Download "><span class="fa fa-fw fa-download   "></span></a>
+                            </td>
+                            <td>Sent</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
 
 
             </div>
 
-            <div class="row">
-                <div class="col-lg-12 mt20 box-shadow ">
-                    <div class="row">
-                        <div class="col-lg-8">
-
-                            <h4>Client Name</h4>
-                            <h5>Location</h5>
-
-                            <h5>Name of Auditor</h5>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div class=" pull-right pad" style="clear:both;"><span class="fa fa-fw fa-clock-o"></span> 11:00 PM</div>
-                            <div class=" pull-right pad" style="clear:both;"><span class="fa fa-fw fa-calendar"></span> 27th August 2015</div>
 
 
-                        </div>
-                    </div>
-                </div>
-
-            </div>
 
 
 
@@ -138,6 +168,9 @@
     <script src="plugins/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="plugins/bootstrap-table/bootstrap-table-all.js"></script>
+    <script src="plugins/bootstrap-table/locale/bootstrap-table-en-US.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/app.js"></script>
 
