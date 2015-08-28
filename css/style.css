@@ -12,14 +12,14 @@ body {
 }
 #page-wrapper {
     padding: 0 15px;
-    min-height: 568px;
+    min-height: 650px;
     background-color: #fff;
 }
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
-        margin: 0 0 0 250px;
-        padding: 0 30px;
+        margin: 0 0 0 150px;
+        padding: 0 15px;
         border-left: 1px solid #e7e7e7;
     }
 }
@@ -108,8 +108,8 @@ body {
     .sidebar {
         z-index: 1;
         position: absolute;
-        width: 250px;
-        margin-top: 51px;
+        width: 150px;
+        margin-top: 60px;
     }
     .navbar-top-links .dropdown-messages,
     .navbar-top-links .dropdown-tasks,
@@ -543,3 +543,6 @@ table.dataTable thead .sorting:after {
 /* add padding  */
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
+.width-90 {
+    width: 90%;
+}
