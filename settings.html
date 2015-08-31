@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Entec Control Panel - Settings</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+
+    <!-- Custom Fonts -->
+    <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-entec navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img src="img/entec-sm.png" height="60px" style=" position:relative; top:-15px; padding:10px;"> </a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw white-txt"></i> <i class="fa fa-caret-down white-txt"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class=" sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+
+                        <li>
+                            <a href="audits.html"><i class="fa fa-file-text-o fa-fw"></i> Audits</a>
+                        </li>
+
+                        <li>
+                            <a href="clients.html"><i class="fa fa-group fa-fw"></i> Clients</a>
+                        </li>
+
+                        <li>
+                            <a href="users.html"><i class="fa fa-user fa-fw"></i> Users</a>
+                        </li>
+
+                        <li>
+                            <a href="settings.html"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div id="page-wrapper">
+
+
+
+            <div class="row mt20">
+                <h3><span class="fa fa-fw fa-gear"></span> Settings</h3>
+            </div>
+
+            <div class="row mt20">
+                <div class="col-lg-12">
+
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active" role="presentation"><a href="#account_sett" aria-controls="account_sett" role="tab" data-toggle="tab"><span> Account Settings</span></a>
+                        </li>
+                        <li role="presentation"><a href="#notif_sett" aria-controls="notif_sett" role="tab" data-toggle="tab"><span> Notifications </span></a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content">
+
+                        <div class="tab-pane fade in active" id="account_sett">
+
+                            <div class="col-lg-7 pad mt20">
+                                <form action="">
+
+                                    <div class="col-lg-7">
+                                        <h4>Update Email</h4>
+                                        <input type="email" class="form-control input-sm" required>
+
+                                    </div>
+
+                                    <div class="col-lg-5 pad mt30 ">
+                                        <button type="submit" class="btn btn-sm btn-primary">Send Verification Mail</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-lg-7 mt20">
+                                <div class="col-lg-7">
+                                    <form action="">
+                                        <h4>Change Password</h4>
+                                        <h5 class="mt20">Old Password</h5>
+                                        <input type="password" class="form-control input-sm" required>
+                                </div>
+
+                                <div class="col-lg-7">
+                                    <h5>New Password</h5>
+                                    <input type="password" class="form-control input-sm" required>
+                                </div>
+
+                                <div class="col-lg-7">
+                                    <h5>Confirm Password</h5>
+                                    <input type="password" class="form-control input-sm" required>
+                                </div>
+                                <div class="col-lg-7 mt20">
+                                    <button class="btn btn-sm btn-primary ">Update</button>
+                                </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+
+                        <div class="tab-pane fade in " id="notif_sett">
+
+                            <div class="col-lg-12 mt20">
+                                <h4>Subscribe Email Notifications <input type="checkbox"></h4>
+
+                            </div>
+                            <div class="col-lg-12 mt20">
+                                <table class="table table-striped pad">
+                                    <thead>
+                                        <tr>
+                                            <th>Event</th>
+                                            <th>Description</th>
+
+                                            <th class="">Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>New Audit</td>
+                                            <th><span class="text-muted">When a New Audit is submitted</span></th>
+                                            <td><span><label><input id="switch" type="checkbox" class="ios-switch" /></label></span></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Audit sent</td>
+                                            <th><span class="text-muted">When an Audit has been mailed to client</span></th>
+                                            <td><span><label><input id="switch" type="checkbox" class="ios-switch" /></label></span></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Delete Audit</td>
+                                            <th> <span class="text-muted">When an Audit has been deleted</span></th>
+                                            <td><span><label><input id="switch" type="checkbox" class="ios-switch" /></label></span></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>New Client</td>
+                                            <th><span class="text-muted">When a new client has been added.</span></th>
+                                            <td><span><label><input id="switch" type="checkbox" class="ios-switch" /></label></span></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+    <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

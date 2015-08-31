@@ -14,6 +14,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="plugins/cropper/cropper.min.css" rel="stylesheet" type="text/css">
+    <link href="plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- Custom Fonts -->
@@ -93,27 +94,58 @@
         </nav>
 
         <div id="page-wrapper">
-            <div class="row mt20">
+            <div class="row mt20 pad">
                 <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#new_client"> <span class="fa fa-fw fa-plus"></span> New Client</a>
             </div>
 
-            <div class="row mt20">
+            <div class="row mt20 pad">
 
-                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 box-shadow mar  ">
-                    <div class="row pad_5">
-                        <div class="col-lg-2 no-padding">
-                            <img class="pad_5" src="http://placehold.it/50x50" alt="">
-                        </div>
-                        <div class="col-lg-8 no-padding">
-                            <h3 class="pad_5 no-margin">Client Name</h3>
-                            <h5 class="pad_5 no-margin">Location</h5>
-                        </div>
-                        <div class="col-lg-2">
-                            <a href="#" class=" btn btn-xs btn-info " title="View"> <span class="fa fa-fw fa-eye"></span></a>
-                            <a href="#" class="btn btn-xs btn-danger mt5" title="Delete"><span class="fa fa-fw fa-close"></span></a>
-                        </div>
-                    </div>
-                </div>
+
+                <table data-toggle="table" data-toolbar="#toolbar" data-search="true" data-show-refresh="true">
+                    <thead>
+                        <tr>
+                            <th>Client</th>
+                            <th>Location</th>
+                            <th>Service Type</th>
+                            <th>Status</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
+                       
+                        <tr>
+                            
+                            <td>  <h5> <img src="http://placehold.it/50x50" class="pad" alt="">Westin</h5> </td>
+                            <td> <span class="fa fa-fw fa-map-marker "></span> Velachery, Chennai</td>
+                            <td> <span class="fa fa-fw fa-user "></span> Contract</td>
+                            <td>Sent</td>
+                            <td class="center">
+                                <a href="audit_detailedview.html" class="btn btn-xs btn-info" title="View "><span class="fa fa-fw fa-eye   "></span></a>
+                                <a href="#" class="btn btn-xs btn-danger" title="Delete "><span class="fa fa-fw fa-close   "></span></a>
+                            </td>
+                            
+                        </tr>
+                        
+                         <tr>
+                            
+                            <td>  <h5> <img src="http://placehold.it/50x50" class="pad" alt="">ITC Grand Chola</h5> </td>
+                            <td> <span class="fa fa-fw fa-map-marker "></span> Guindy, Chennai</td>
+                            <td> <span class="fa fa-fw fa-user "></span> Contract</td>
+                            <td>Sent</td>
+                            <td class="center">
+                                <a href="audit_detailedview.html" class="btn btn-xs btn-info" title="View "><span class="fa fa-fw fa-eye   "></span></a>
+                                <a href="#" class="btn btn-xs btn-danger" title="Delete "><span class="fa fa-fw fa-close   "></span></a>
+                            </td>
+                            
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+
+                
 
             </div>
 
@@ -188,7 +220,7 @@
                                     <!-- /.modal -->
 
                                 </div>
-                                
+
                                 <div class="col-lg-7 ">
                                     <h4>Client Name</h4>
                                     <input type="text" placeholder="" class="input-xs form-control" required>
@@ -216,27 +248,27 @@
                                         <h4>Email</h4>
                                         <input type="text" placeholder="" class="input-xs form-control" required>
                                     </div>
-                                    
+
                                     <div class="col-lg-12">
                                         <h4>Engagement Type</h4>
-                                        <Select  placeholder="" class="input-xs form-control" required>
+                                        <Select placeholder="" class="input-xs form-control" required>
                                             <option value="">Select One</option>
                                             <option value="">One time Job</option>
-                                            <Option>Contract</Option>                                            
+                                            <Option>Contract</Option>
                                         </Select>
                                     </div>
-                                    
+
                                     <div class="col-lg-12 ">
                                         <h4>Contract period</h4>
                                         <div class="col-lg-5 no-padding">
                                             <input type="date" class="form-control input-sm" placeholder="Start Date" required>
-                                            
+
                                         </div>
                                         <div class="col-lg-2 center no-padding">To</div>
                                         <div class="col-lg-5 no-padding">
-                                            <input type="date" class="form-control input-sm" placeholder="End Date" required>                                            
+                                            <input type="date" class="form-control input-sm" placeholder="End Date" required>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
 
@@ -319,6 +351,8 @@
     <script src="plugins/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="plugins/bootstrap-table/bootstrap-table-all.js"></script>
+    <script src="plugins/bootstrap-table/locale/bootstrap-table-en-US.min.js"></script>
     <script src="plugins/cropper/cropper.min.js"></script>
     <script src="plugins/cropper/profile-photo.js"></script>
     <!-- Custom Theme JavaScript -->

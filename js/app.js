@@ -1,9 +1,13 @@
-$(function() {
+$(document).ready(function () {
+    var switches = document.querySelectorAll('input[type="checkbox"].ios-switch');
 
-    $('#side-menu').metisMenu();
+    for (var i = 0, sw; sw = switches[i++];) {
+        var div = document.createElement('div');
+        div.className = 'switch';
+        sw.parentNode.insertBefore(div, sw.nextSibling);
 
+    }
 });
-
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
