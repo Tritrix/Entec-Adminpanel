@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Entec Control Panel - Audits</title>
+    <title>Entec Control Panel - Clients</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -98,47 +98,106 @@
 
 
             <div class="row mt20">
-                <a href="clients.html" class="btn btn-sm btn-primary"> <span class="fa fa-fw fa-arrow"></span> Back </a>
+               <div class="col-md-1 ">
+                <a href="clients.html" class="btn btn-sm btn-primary"> <span class="fa fa-fw fa-arrow-left"></span> Back </a>
+                </div>
             </div>
 
             <div class="row mt20">
 
                 <!--Info-->
-                <div class="col-lg-12 pad_20" style="background-color:#cccccc">
-                    <div class="col-lg-2">
+                <div class="col-md-12 col-sm-12 col-xs-12 pad_20 label-success white-txt">
+
+                    <div class=" col-md-3 col-sm-4 col-xs-4">
                         <img src="http://placehold.it/175x175" alt="">
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-md-3 col-sm-8 col-xs-8 no-padding">
                         <h3>Client Name</h3>
                         <h4>Location</h4>
+                        <div class="col-md-12">
+                        
+                        </div>
 
 
                     </div>
-                    
-                    <div class="col-lg-3">
-                        
+
+                    <div class=" col-md-3 col-sm-6 col-xs-6">
+
                         <div class="col-lg-12">
                             <h4>Contact Person</h4>
                             <h5>Mr. Ragesh Gunaseelan</h5>
                             <h5>+91 988766563</h5>
                             <h5>ragesh@cholagroup.com</h5>
-                            
+
                         </div>
                     </div>
 
-                    <div class="col-lg-3 pull-right">
+                    <div class=" col-md-3 col-sm-6 col-xs-6 pull-right">
                         <div class="col-lg-12">
                             <h4>Address</h4>
                             <h5>#34 Guindy Main Road,</h5>
                             <h5>Guindy Chennai - 600054</h5>
                         </div>
-                        
+
 
                     </div>
 
 
                 </div>
             </div>
+            
+            <div class="col-lg-12 pad mt30">
+
+                <table data-toggle="table" data-toolbar="#toolbar" data-search="true" data-show-refresh="true">
+                    <thead>
+                        <tr>
+                            <th>Audit ID</th>
+                            
+                            <th>Location</th>
+                            <th>Auditor</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#001</td>
+                           
+                            <td> <span class="fa fa-fw fa-map-marker "></span> Velachery, Chennai</td>
+                            <td> <img src="http://placehold.it/20x20" alt=""> Geetha</td>
+                            <td><span class="fa fa-fw fa-calendar"></span> 27th Aug 2015</td>
+                            <td><span class="fa fa-fw fa-clock-o"></span> 11:30 AM</td>
+                            <td>Sent</td>
+                            <td class="center">
+                                <a href="audit_detailedview.html" class="btn btn-xs btn-info" title="View "><span class="fa fa-fw fa-eye   "></span></a>
+                                <a href="#" class="btn btn-xs btn-danger" title="Delete "><span class="fa fa-fw fa-close   "></span></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>#002</td>
+                           
+                            <td><span class="fa fa-fw fa-map-marker "></span> Velachery, Chennai</td>
+                            <td><img src="http://placehold.it/20x20" alt=""> Prabakaran</td>
+                            <td><span class="fa fa-fw fa-calendar"></span> 30th Aug 2015</td>
+                            <td><span class="fa fa-fw fa-clock-o"></span> 09:30 AM</td>
+                            <td>Not Sent</td>
+                            <td class="center">
+                                <a href="audit_detailedview.html" class="btn btn-xs btn-info" title="View "><span class="fa fa-fw fa-eye   "></span></a>
+                                <a href="#" class="btn btn-xs btn-danger" title="Delete "><span class="fa fa-fw fa-close   "></span></a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+
 
 
 
