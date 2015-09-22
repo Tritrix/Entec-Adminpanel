@@ -99,7 +99,15 @@
 
             <div class="row mt20">
                <div class="col-md-1 ">
-                <a href="clients.html" class="btn btn-sm btn-primary"> <span class="fa fa-fw fa-arrow-left"></span> Back </a>
+                   <a href="clients.html" class="btn btn-sm btn-primary"> <span class="fa fa-fw fa-arrow-left"></span><span class="hidden-xs"> Back </span> </a>
+                </div>
+                
+                <div class="col-md-1 pull-right ">
+                <a href=""  class="btn btn-sm btn-danger" data-toggle="modal" data-target="#confirmation"> <span class="fa fa-fw fa-trash"></span> <span class="hidden-xs">Delete</span> </a>
+                </div>
+                
+                <div class="col-md-1 pull-right ">
+                    <a href=""  class="btn btn-sm btn-success" data-toggle="modal" data-target="#edit_client"> <span class="fa fa-fw fa-pencil"></span><span class="hidden-xs"> Edit </span> </a>
                 </div>
             </div>
 
@@ -207,6 +215,198 @@
 
     </div>
     <!-- /#wrapper -->
+    
+    <!--    Edit Client-->
+    <div class="modal fade " id="edit_client">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><span class="fa fa-fw fa-plus"></span>New Client</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form action="">
+
+                            <div class="col-lg-12 no-padding">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 center " id="crop-avatar">
+
+                                    <div class="avatar-view" title="Upload client Logo" style="margin-top:0;margin-left:0" id="clientAvatar">
+
+                                        <img class="cropper" src="http://placehold.it/150x150" alt="Avatar">
+                                    </div>
+
+                                    <!-- Cropping modal -->
+                                    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+                                        <div class="modal-dialog modal-md">
+                                            <div class="modal-content">
+                                                <form class="avatar-form" action="crop.php" enctype="multipart/form-data" method="post">
+                                                    <div class="modal-header">
+                                                        <button class="close" data-dismiss="modal" type="button">&times;</button>
+                                                        <h4 class="modal-title" id="avatar-modal-label">Upload Photo</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="avatar-body">
+
+                                                            <!-- Upload image and data -->
+                                                            <div class="avatar-upload">
+                                                                <input class="avatar-src" name="avatar_src" type="hidden">
+                                                                <input class="avatar-data" name="avatar_data" type="hidden">
+                                                                <label for="avatarInput">Upload</label>
+                                                                <input class="avatar-input" id="avatarInput" name="avatar_file" type="file">
+                                                            </div>
+
+                                                            <!-- Crop and preview -->
+                                                            <div class="row" style="margin-bottom:10px;">
+                                                                <div class="col-md-12">
+                                                                    <div class="avatar-wrapper "></div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="row avatar-btns">
+
+                                                                <div class="col-md-offset-9 col-md-3">
+                                                                    <button class="btn btn-primary btn-sm btn-block avatar-save" type="submit">Save</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.modal -->
+
+                                </div>
+
+                                <div class="col-lg-7 ">
+                                    <h4>Client Name</h4>
+                                    <input type="text" placeholder="" class="input-xs form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 no-padding">
+                                <div class="col-lg-6 no-padding">
+                                    <div class="col-lg-12">
+                                        <h4>Contact Person</h4>
+                                        <input type="text" placeholder="" class="input-xs form-control" required>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <h4>Mobile</h4>
+                                        <input type="text" placeholder="" class="input-xs form-control" required>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <h4>Landline</h4>
+                                        <input type="text" placeholder="" class="input-xs form-control" required>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <h4>Email</h4>
+                                        <input type="text" placeholder="" class="input-xs form-control" required>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <h4>Engagement Type</h4>
+                                        <Select placeholder="" class="input-xs form-control" required>
+                                            <option value="">Select One</option>
+                                            <option value="">One time Job</option>
+                                            <Option>Contract</Option>
+                                        </Select>
+                                    </div>
+
+                                    <div class="col-lg-12 ">
+                                        <h4>Contract period</h4>
+                                        <div class="col-lg-5 no-padding">
+                                            <input type="date" class="form-control input-sm" placeholder="Start Date" required>
+
+                                        </div>
+                                        <div class="col-lg-2 center no-padding">To</div>
+                                        <div class="col-lg-5 no-padding">
+                                            <input type="date" class="form-control input-sm" placeholder="End Date" required>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding">
+
+                                    <div class="col-lg-12">
+                                        <h4>Address</h4>
+                                        <input type="text" placeholder="" class="input-sm form-control" required>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <h4>Area </h4>
+                                        <input type="text" placeholder="" class="input-sm form-control" required>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <h4>City </h4>
+                                        <input type="text" placeholder="" class="input-sm form-control" required>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <h4>State </h4>
+                                        <input type="text" placeholder="" class="input-sm form-control" required>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <h4>Country </h4>
+                                        <input type="text" placeholder="" class="input-sm form-control" required>
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <h4> Pin Code </h4>
+                                        <input type="number" placeholder="" class="input-sm form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </form>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Client</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    Add/Edit Client-->
+    
+        <!--   Edit existing Client-->
+
+    <div class="modal fade" id="confirmation">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>Are you sure you want to delete?</h5>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- jQuery -->
     <script src="plugins/jquery/dist/jquery.min.js"></script>
