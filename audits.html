@@ -95,9 +95,13 @@
 
         <div id="page-wrapper">
 
+            <div class="row  pad">
+                <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#new_audit"> <span class="fa fa-fw fa-plus"></span> New Audit</a>
+            </div>
 
 
-            <div class="col-lg-12 pad mt30">
+
+            <div class="col-lg-12 pad ">
                 <table data-toggle="table" data-toolbar="#toolbar" data-search="true" data-show-refresh="true">
                     <thead>
                         <tr>
@@ -143,17 +147,65 @@
                     </tbody>
                 </table>
             </div>
-
-
-
-
-
-
         </div>
         <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
+
+    <!--    Add New Client-->
+    <div class="modal fade " id="new_audit">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"><span class="fa fa-fw fa-plus"></span>New Audit</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form action="">
+                            <div class="col-lg-12">
+                                <h4>Client</h4>
+                                <select name="" id="" class="form-control input-xs">
+                                    <option value="">Select a Client</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <h4>Auditor</h4>
+                                <select name="" id="" class="form-control input-xs">
+                                    <option value="">Select an Auditor</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <h4>Date of Audit</h4>
+                                <input type="date" class="form-control input-sm" placeholder="Date" required>
+
+                            </div>
+                            
+                            <div class="col-lg-12">
+                                <h4>Time of Audit</h4>
+                                <input type="time" class="form-control input-sm" placeholder="Time" required>
+
+                            </div>
+
+
+
+
+
+                        </form>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Audit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    Add/Edit Client-->
 
     <!-- jQuery -->
     <script src="plugins/jquery/dist/jquery.min.js"></script>
