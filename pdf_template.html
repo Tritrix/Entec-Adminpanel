@@ -32,8 +32,9 @@
 
     <div id="wrapper">
         <div class="container">
+            <button class="btn btn-primary btn-sm" onclick="javascript:printDiv('printablediv')">Print</button>
 
-            <div class="row  mt30">
+            <div id="printablediv" class="container  mt30">
 
                 <div class="col-md-12 col-sm-12 col-xs-12 pad_20 ">
                     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
@@ -90,7 +91,7 @@
 
 
                 </div>
-            </div>
+           
 
 
             <div class="row mt20 mb20">
@@ -402,6 +403,7 @@
                     </tbody>
                 </table>
             </div>
+             </div>
 
         </div>
     </div>
@@ -414,6 +416,28 @@
     <script src="plugins/bootstrap-table/locale/bootstrap-table-en-US.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/app.js"></script>
+    
+    <script language="javascript" type="text/javascript">
+        function printDiv(divID) {
+            //Get the HTML of div
+            var divElements = document.getElementById(divID).innerHTML;
+            //Get the HTML of whole page
+            var oldPage = document.body.innerHTML;
+
+            //Reset the page's HTML with div's HTML only
+            document.body.innerHTML = 
+              "<html><head><title></title></head><body>" + 
+              divElements + "</body>";
+
+            //Print Page
+            window.print();
+
+            //Restore orignal HTML
+            document.body.innerHTML = oldPage;
+
+          
+        }
+    </script>
 
 </body>
 
