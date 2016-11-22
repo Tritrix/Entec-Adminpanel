@@ -1,0 +1,30 @@
+<div class="landing-bg"  ng-controller="LoginController" src="img/bg-01.png">
+<!--   <img class="landing-bg">-->
+    <div class="row">
+        <div class="container">
+            <center>
+                <div class='landing-form'>
+                    <a ui-sref="login" class="pull-left pad" title="Back to Login"><i class="fa fa-arrow-left fa-lg"></i></a>
+                    <div class="landing-logo-bg ">
+                        <center><img class="landing-logo" src="img/entec.png" alt=""></center>
+
+                    </div>
+                    <div class="pad mar">
+                        <h2>Login To Your Account</h2>
+                        
+                        <form name="loginForm" ng-submit="login(credentials)">
+                           <input placeholder='Username' type='text' required>
+                            <input placeholder='Email' type='text' required>
+                            <input placeholder='Password' type='password' required>
+                            <input placeholder='Confirm Password' type='password' required>
+                            <button >SignUp</button>
+                            
+                            
+                        </form>
+                    </div>
+                </div>
+            </center>
+
+        </div>
+    </div>
+</div>

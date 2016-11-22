@@ -1,0 +1,27 @@
+<div class="landing-bg"  ng-controller="LoginController" src="img/bg-01.png">
+<!--   <img class="landing-bg">-->
+    <div class="row">
+        <div class="container">
+            <center>
+                <div class='landing-form'>
+                    <div class="landing-logo-bg ">
+                        <center><img class="landing-logo" src="img/entec.png" alt=""></center>
+
+                    </div>
+                    <div class="pad mar">
+                        <h2>Login To Your Account</h2>
+                        
+                        <form name="loginForm" ng-submit="login(credentials)">
+                            <input name="username" ng-model="credentials.username" placeholder='Username' type='text'>
+                            <input name="password" ng-model="credentials.password" placeholder='Password' type='password'>
+                            <a ui-sref="changePassword" class="pad">Forgot password?</a>
+                            <button>Login</button>
+                            <h4><a ui-sref="signup">Create account</a></h4>
+                        </form>
+                    </div>
+                </div>
+            </center>
+
+        </div>
+    </div>
+</div>

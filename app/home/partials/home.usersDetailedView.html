@@ -1,0 +1,107 @@
+<div id="page-wrapper">
+    <div class="panel panel-default" style="border-color: transparent;box-shadow:none">
+
+
+        <form editable-form name="editableUsersForm" onaftersave="updateUsers(userDetail);" ng-controller="DetailedUsersController" novalidate>
+            <!-- button -->
+            <div class="row pad mt5">
+                <div class="col-md-9 no-padding">
+                    <a ui-sref="home.users" class="btn btn-sm btn-primary"> <span class="fa fa-fw fa-arrow-left"></span> Back </a>
+                </div>
+                <div class="col-md-3">
+                    <div class="pull-right  btn-group">
+
+                        <!--*********************************************************-->
+                        <!--****************    Edit and Delete buttons     ****************-->
+                        <!--*********************************************************-->
+
+                        <!-- button to DELETE -->
+                        <!--                    <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#confirmation"> <span class="fa fa-fw fa-trash"></span> <span class="hidden-xs">Delete</span> </a>-->
+
+                        <!-- button to show form -->
+                        <button type="button" class="btn btn-sm btn-success" ng-click="editableUsersForm.$show()" ng-show="!editableUsersForm.$visible">
+                            Edit
+                        </button>
+
+
+                        <!--*********************************************************-->
+                        <!--****************    Save and Cancel buttons     ****************-->
+                        <!--*********************************************************-->
+                        <span ng-show="editableUsersForm.$visible">
+                            <button type="submit" id="saveUser" class="btn btn-sm  btn-primary" ng-disabled="editableUsersForm.$waiting">
+                              Save
+                            </button>
+                            <button type="button" class="btn btn-sm btn-default" ng-disabled="editableUsersForm.$waiting" ng-click="editableUsersForm.$cancel()">
+                              Cancel
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!--  Client Description -->
+            <div class="row mt30">
+                <!--Info-->
+                <div class="col-md-12 col-sm-12 col-xs-12 pad_20">
+
+                    <!--Profile Picture-->
+                    <div class="col-md-2 col-sm-2 col-xs-4">
+                        <h4> Profile Picture </h4>
+                        <div class="profilePic">
+                            <img ng-src="{{image1.compressed.dataURL || imageUrl + userDetail.picture}}" style="float:right" class="image-preview" />
+                            <input type="hidden" ng-model="userDetail.picture">
+                        </div>
+                        <span ng-show="editableUsersForm.$visible">
+                            <div class="mt5">
+                                <input class="btn btn-primary btn-sm pt5 text-center" type="file" image="image1" ng-model="files" name="files" file-model="files" accept="image/*" resize-max-height="150" resize-max-width="150" resize-quality="0.7" resize-type="image/jpg" ng-image-compress style="float:left; width:180px;" ng-disabled="editableUsersForm.$waiting" id="fileInput" required>
+                            </div>
+                            <div class="mt5">
+                                <button type="button" class="btn btn-primary mt5" ng-click="upload(image1)" id="uploadUsersPic" data-disablestat="false"  ng-disabled="editableUsersForm.$waiting"  style="float:left;">Upload</button>
+                            </div>
+                        </span>
+                    </div>
+
+                    <!--Profile Picture-->
+                    <div class=" col-md-5 col-sm-6 col-xs-6 mt20 user-info">
+                        <!-- Name -->
+                        <h6>Name</h6>
+                        <span class="" editable-text="userDetail.username" e-name="userDetail.username" e-required><h3 style="margin:0 0 20px;">{{ userDetail.username || 'empty' }}</h3></span>
+
+                        <!-- Designation -->
+                        <h6>Designation</h6>
+                        <span class="" editable-text="userDetail.designation" e-name="userDetail.designation" e-required><h3 style="margin:0 0 20px;">{{ userDetail.designation || 'empty' }}</h3></span>
+
+                        <!-- Date Of Birth -->
+                        <h6>Date Of Birth</h6>
+                        <span class="" editable-bsdate="userDetail.dob" e-name="userDetail.dob" e-is-open="openedDOB.$data" e-ng-click="openDOB($event,'$data')" ng-model="end" e-datepicker-popup="dd-MMMM-yyyy" is-open="endOpened" min="minEndDate" max="maxEndDate" datepicker-options="dateOptions" e-required><h3 style="margin:0 0 20px;"><span class="fa fa-fw fa-calendar"></span> {{ userDetail.dob || 'empty' | date:'dd-MMMM-yyyy'}}</h3>
+                        </span>
+
+                        <!-- Email -->
+                        <h6>Email</h6>
+                        <span class="" editable-text="userDetail.email" e-name="userDetail.email" e-required><h3 style="margin:0 0 20px;">{{ userDetail.email || 'empty' }}</h3></span>
+                    </div>
+
+                    <!--Profile Picture-->
+                    <div class=" col-md-5 col-sm-6 col-xs-6 mt20 user-info">
+                        <!-- Address -->
+                        <h6>Address</h6>
+                        <span editable-text="userDetail.address" e-name="userDetail.address" e-required><h3 style="margin:0 0 20px;">{{ userDetail.address || 'empty' }}</h3></span>
+
+                        <!-- Mobile Number -->
+                        <h6>Mobile Number</h6>
+                        <span class="" editable-text="userDetail.mobile" e-name="userDetail.mobile" e-required><h3 style="margin:0 0 20px;">{{ userDetail.mobile || 'empty' }}</h3></span>
+
+                        <!-- Emergency Contact Number -->
+                        <h6>Emergency Contact Number</h6>
+                        <span class="" editable-text="userDetail.emergencycontact" e-name="userDetail.emergencycontact" e-required><h3 style="margin:0 0 20px;">{{ userDetail.emergencycontact || 'empty' }}</h3></span>
+
+                        <!-- Date of Joining -->
+                        <h6>Date of Joining</h6>
+                        <span class="" editable-bsdate="userDetail.doj" e-name="userDetail.doj" e-is-open="openedDOJ.$data" e-ng-click="openDOJ($event,'$data')" e-datepicker-popup="dd-MMMM-yyyy" e-required><h3 style="margin:0 0 20px;"><span class="fa fa-fw fa-calendar"></span> {{ userDetail.doj || 'empty' | date:'dd-MMMM-yyyy' }}</h3>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

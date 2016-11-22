@@ -1,0 +1,232 @@
+<!-- Navigation -->
+<nav class="navbar navbar-entec navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html"><img src="img/entec-sm.png" height="55px" style=" position:relative; top:-15px; padding:10px;"> </a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-user fa-fw white-txt"></i> <i class="fa fa-caret-down white-txt"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+<!--
+                <li><a ui-sref="home.settings"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                </li>
+-->
+<!--
+                <li><a ui-sref="home.settings"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                </li>
+-->
+                <li class="divider"></li>
+                <li ng-controller="LogoutController"><a ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
+
+
+</nav>
+<div class="sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+
+            <li>
+                <a ui-sref="home" isActiveNav>
+                    <i class="fa fa-file-text-o fa-fw"></i> Audits</a>
+            </li>
+
+            <li>
+                <a ui-sref="home.clients" isActiveNav>
+                    <i class="fa fa-group fa-fw"></i> Clients</a>
+            </li>
+
+            <li>
+                <a ui-sref="home.users" isActiveNav><i class="fa fa-user fa-fw"></i> Users</a>
+            </li>
+
+<!--
+            <li>
+                <a ui-sref="home.settings" isActiveNav><i class="fa fa-gear fa-fw"></i> Settings</a>
+            </li>
+-->
+
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+<!-- /.navbar-static-side -->
+<!--
+
+<div id="loaderDiv" loader class="hidden">
+     loading <i class="fa fa-spinner fa-spin"></i>{{loading}}.....
+</div>
+-->
+
+
+
+
+<div ui-view>
+    <div class="alert-info pull-right pad_5 hidden" ng-show="loading" style="width:300px; position:absolute; right:0; margin: none; z-index:10030;">loading <i class="fa fa-spinner fa-spin"></i>{{loading}}.....</div>
+
+    <div id="page-wrapper">
+        <div class="panel no-border pad">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 style="margin-top:5px;"><i class="fa fa-file-text-o fa-fw"></i> Audits</h3>
+                </div>
+            </div>
+            <div class="row mt5 b-btm">
+                <div class="col-md-10  mb5">
+                    <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#new_audit" ng-click="getDropDownDetails()"> <span class="fa fa-fw fa-plus"></span> New Audit</a>
+                </div>
+                <!--
+                <div class="col-md-2 no-padding"><input class="form-control input-sm pull-right" ng-model="search">
+</div>
+-->
+            </div>
+
+
+            <div class="row mt20">
+                <div class="col-lg-12 mt20">
+                    <div class="fixed-table-container">
+                        <table class="table  table-no-bordered" data-toggle="table" data-toolbar="#toolbar" data-search="true" data-show-refresh="true" style="margin-bottom:0">
+                            <thead class="fixed-table-header">
+                                <tr>
+                                    <th>
+                                        <h4 class="text-center"><b>Audit ID</b></h4></th>
+                                    <th>
+                                        <h4 class="text-center"><b>Client</b></h4></th>
+                                    <th>
+                                        <h4 class="text-center"><b>Location</b></h4></th>
+                                    <th>
+                                        <h4 class="text-center"><b>Auditor</b></h4></th>
+                                    <th>
+                                        <h4 class="text-center"><b>Date</b></h4></th>
+                                    <th>
+                                        <h4 class="text-center"><b>Time</b></h4></th>
+                                    <th>
+                                        <h4 class="text-center"><b>Status</b></h4></th>
+                                    <th>
+                                        <h4 class="text-center"><b>Options</b></h4></th>
+                                </tr>
+                            </thead>
+                            <tbody id="auditList">
+                                <tr ng-show="showMessage">
+                                    <td><h5 class="pad">{{msgText}}</h5></td>
+                                </tr>
+                                <tr ng-repeat="al in getAudits track by $index">
+                                    <td style="width:70px;">#
+                                        <h5 class="text-center capitalize">{{al.audit_id}}</h5></td>
+                                    <td>
+                                        <h5 class="text-center capitalize">{{al.client_name}}</h5></td>
+                                    <td>
+                                        <h5 class="text-center capitalize"><span class="fa fa-fw fa-map-marker mr5"></span> {{al.audit_location}}</h5></td>
+                                    <td>
+                                        <h5 class="text-center capitalize">{{al.user_name}}</h5></td>
+                                    <td>
+                                        <h5 class="text-center capitalize"><span class="fa fa-fw fa-calendar mr5"></span>{{al.audit_date | amDateFormat:'DD-MM-YYYY'}}</h5></td>
+                                    <td>
+                                        <h5 class="text-center capitalize"><span class="fa fa-fw fa-clock-o"></span> {{al.audit_time | date:'HH:mm:ss a'}}</h5></td>
+                                    <td>
+                                        <h5 class="text-center capitalize"><span>{{al.audit_status}}</span></h5></td>
+                                    <td class="center" style="width:90px;">
+                                        <a class="btn btn-xs btn-info" title="View " ng-click="observationDetail(al, $index)"><span class="fa fa-fw fa-eye"></span></a>
+                                        <a class="btn btn-xs btn-danger" title="Delete" ng-click="deleteAudit(al, $index)"><span class="fa fa-fw fa-close"></span></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--    Add New Client-->
+<div class="modal fade " id="new_audit">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><span class="fa fa-fw fa-plus"></span>New Audit</h4>
+            </div>
+
+            <form action=" " name="auditForm">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4>Client</h4>
+
+                            <select ng-model="auditCredentials.client_name" name="client_name" id="" class="form-control input-xs capitalize" ng-options="cn.client_name for cn in getClientInfo track by cn.client_id" value={{cn.client_name}} ng-change="selectClient(auditCredentials.client_name)">
+<!--                            <select ng-model="auditCredentials.client_name" name="client_name" id="" class="form-control input-xs capitalize">-->
+                                <option value="">Select Client</option>
+<!--                                <option ng-repeat="cn in getInfo" value="{{cn.id}}">{{cn.name}}</option>-->
+                            </select>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <h4>Auditor</h4>
+                            <select ng-model="auditCredentials.auditor" name="auditor" id="" class="form-control input-xs capitalize" ng-options="au.id as au.name for au in auditor" value={{au.name}}>
+                                <option value="">Select an Auditor</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <h4>Audit Location</h4>
+                            <select ng-model="auditCredentials.audit_location" name="audit_location" id="" class="form-control input-xs" ng-options="cn.location as cn.location for cn in getClientLocation" value="cn.location">
+                                <option value="">Select Location of the Audit</option>
+                            </select>
+                        </div>
+
+
+                        <div class="col-lg-12">
+                            <h4>Audit Status</h4>
+                            <select ng-model="auditCredentials.audit_status" name="audit_status" id="" class="form-control input-xs">
+                                <option value="">Select Status</option>
+                                <option value="Incomplete">In-complete</option>
+                                <option value="Inprogress ">In-progress</option>
+                                <option value="Completed ">Completed</option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <h4>Date of Audit</h4>
+                            <input type="text" ui-date="dateOptions" ng-model="auditCredentials.audit_date" name="audit_date" class="form-control input-sm" placeholder="Date" required>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <h4>Time of Audit</h4>
+                            <input type="time" ng-model="auditCredentials.audit_time" name="audit_time" placeholder="Time" class="form-control input-sm" required step=900>
+                            <!--
+                            <span ng-messages for="auditForm.audit_time.$error" ng-if="auditForm.audit_time.$dirty || signupFormSubmitted" class="">
+                               <span ng-message="required" class="errorNotify"> Enter Valid Time</span>
+                            </span>
+-->
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    <a class="btn btn-primary" ng-click="addAudit(auditCredentials); signupFormSubmitted = true">Create Audit</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<!--    Add/Edit Client-->

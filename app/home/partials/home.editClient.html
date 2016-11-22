@@ -1,0 +1,43 @@
+<div id="page-wrapper">
+  <div class="panel no-border">
+    
+   <div class="row pad">
+    <button ui-sref="home.clients" class="btn btn-xs btn-danger pull-right mt10 pad"><span class="fa fa-fw fa-close" ></span></button>
+      </div>
+   <div class="row pad">
+            <form name="editClientListForm" ng-controller="EditClientController">
+                <div class="modal-body">
+                    <div class="row">
+
+                            <div class="col-lg-12 no-padding">
+                                <div class="col-lg-7 ">
+                                    <h4>Client Name</h4>
+                                    <input type="text" ng-model="editClientList.client_name" placeholder="" class="input-xs form-control" required >
+                                </div>
+                                <div class="col-lg-7 ">
+                                    <h4>Contact Person</h4>
+                                    <input type="text" ng-model="editClientList.client_contact_person" placeholder="" class="input-xs form-control" required >
+                                </div>
+                                    
+                                <div class="col-lg-7 ">
+                                    <h4>Client Location</h4>
+                                    <input type="text" ng-model="editClientList.client_location" placeholder="" class="input-xs form-control" required >
+                                </div>
+                                
+                                <div class="col-lg-7 ">
+                                    <h4>Client Address</h4>
+                                    <input type="text" ng-model="editClientList.client_address" placeholder="" class="input-xs form-control" required >
+                                </div>
+                            </div>
+                           
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" ng-click="updateClient(editClientList);">Add Client</button>
+                </div>
+                </form>
+    </div>
+  </div>
+</div>

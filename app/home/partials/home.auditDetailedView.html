@@ -1,0 +1,404 @@
+<div id="page-wrapper">
+    <div class="panel panel-default" style="border-color: transparent;box-shadow:none">
+
+        <!-- button -->
+        <div class="row pad mt5">
+            <div class="col-md-9 no-padding">
+                <a ui-sref="home" class="btn btn-sm btn-primary"> <span class="fa fa-fw fa-arrow-left"></span> Back </a>
+            </div>
+            <div class="col-md-3">
+                <div class="pull-right  btn-group">
+                    <button class="btn btn-sm btn-success" ng-click="printObservation()"><span class="fa fa-fw fa-download"></span> Download</button>
+                    <!--                    <button class="btn btn-sm btn-success "><span class="fa fa-fw fa-envelope-o"></span> Send as Email</button>-->
+                </div>
+            </div>
+        </div>
+
+
+        <!--*****************************************************-->
+        <!--***********************  Client Description *********************** -->
+        <!--*****************************************************-->
+        <div class="row  mt30">
+            <!--Info-->
+            <div class="col-md-12 col-sm-12 col-xs-12 pad_20 label-success white-txt" ng-repeat="cl in clientList" last>
+                <div class="col-md-2 col-sm-4 col-xs-4 no-padding">
+                    <img class="mt10" src="{{ cl.client_logo }}" alt="" style="width:150px;">
+                </div>
+
+                <div class="col-md-3 col-sm-8 col-xs-8">
+
+                    <!-- editable client_name (text with validation) -->
+                    <div class="form-group">
+                        <h6 class="title">Client Name  </h6>
+                        <span class="capitalize" e-name="client_name" onbeforesave="checkName($data)" e-required><h3 style="margin:0 0 20px;">{{ cl.client_name || 'empty' }}</h3></span>
+                    </div>
+
+
+                    <!-- editable client_location (text with validation) -->
+                    <div>
+                        <h6 class="title">Client Location </h6>
+                        <span class="capitalize" e-name="client_location" onbeforesave="checkName($data)" e-required><h3 style="margin:0 0 20px;">{{ cl.client_location || 'empty' }}</h3></span>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-6">
+
+                    <div class="col-lg-12">
+                        <!-- editable Contact Person (text with validation) -->
+                        <h6>Contact Person</h6>
+                        <span class="capitalize" e-name="client_contact_person" onbeforesave="checkName($data)" e-required><h3 style="margin:0 0 20px;">{{ cl.client_contact_person || 'empty' }}</h3></span>
+
+
+                        <!-- editable Contact Person (text with validation) -->
+                        <h6>Contact Number</h6>
+                        <span class="capitalize" e-name="client_mobile" e-required><h3 style="margin:0 0 20px;">{{ cl.client_mobile || 'empty' }}</h3></span>
+
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-6">
+                    <div class="col-lg-12">
+                        <h6>Address</h6>
+                        <!-- editable Address (text with validation) -->
+                        <span e-name="client_address" onbeforesave="checkName($data)" e-required><h4 style="margin:0 0 20px;" class="capitalize">{{ cl.client_address || 'empty' }}</h4></span>
+
+                        <!-- editable Contact Person (text with validation) -->
+                        <h6>Email</h6>
+                        <span class="" e-name="client_email" e-required><h3 style="margin:0 0 20px;">{{ cl.client_email || '-' }}</h3></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--*****************************************************-->
+        <!--***********************  Observation list *********************** -->
+        <!--*****************************************************-->
+        <div class="row pad_20 mt20">
+            <h2>{{audit_title}}</h2>
+            <div class="page-header">
+                <button class="btn btn-sm btn-success " data-toggle="modal" data-target="#observation"><span class="fa fa-fw fa-plus"></span> Add Observation</button>
+            </div>
+
+
+            <div class="col-lg-12 no-padding mt20">
+                <div class="fixed-table-container">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Premises Location</th>
+                                <th>Description</th>
+                                <th>Responsibility</th>
+                                <th>Priority</th>
+                                <th>Photo</th>
+                                <th>Status</th>
+                                <th class="text-center">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-show="showMessage">
+                                <td>
+                                    <h5 class="pad">{{msgText}}</h5></td>
+                            </tr>
+                            <tr ng-repeat="ol in ObservationList" last>
+                                <input type="hidden" ng-model="ol.audit_id">
+                                <input type="hidden" ng-model="ol.observation_id">
+                                <!-- lOCATION -->
+                                <td><span editable-text="ol.observation_location" e-name="observation_location" e-form="rowform" ng-disabled="button" ng-init="button=true" required>{{ol.observation_location || " -- " }}</span></td>
+
+                                <!-- DESCRIPTION -->
+                                <td><span editable-text="ol.observation_description" e-name="observation_description" e-form="rowform" ng-disabled="button" ng-init="button=true" required>{{ol.observation_description}}</span></td>
+
+                                <!-- RESPONSIBILITY -->
+                                <td><span ng-show="!rowform.$visible">{{ol.observation_responsibility}}</span>
+                                    <select ng-model="ol.observation_responsibility" name="observation_responsibility" e-name="observation_responsibility" e-form="rowform" class="form-control" required ng-show="rowform.$visible">
+                                        <option ng-repeat="item in observationResponsibility.availableOptions track by item.id" value="{{item.id}}" ng-selected="ol.observation_responsibility == item.id">{{item.name}}
+                                        </option>
+                                    </select>
+                                </td>
+
+                                <!-- PRIORITY -->
+                                <td><span ng-show="!rowform.$visible">{{ol.observation_priority}}</span>
+                                    <select ng-model="ol.observation_priority" name="observation_priority" e-name="observation_priority" e-form="rowform" class="form-control" required ng-show="rowform.$visible">
+                                        <option ng-repeat="item in observationPriority.availableOptions track by item.id" value="{{item.id}}" ng-selected="ol.observation_priority == item.id">{{item.name}}
+                                        </option>
+                                    </select>
+                                </td>
+
+                                <!-- Image -->
+                                <td><img style="width:100px;max-height:150px;" class=" pull-left" src="{{image1.compressed.dataURL || ol.observation_image}}">
+                                    <div>
+                                        <span ng-show="rowform.$visible" class="input-group">
+                                        <input class="btn btn-xs btn-primary btn-sm pt5 pull-left mr5" type="file" image="image1" ng-model="files" name="files" file-model="files" accept="image/*" resize-max-height="150" resize-max-width="150" resize-quality="0.7" resize-type="image/jpg" ng-image-compress style="float:right; width:170px;" ng-disabled="rowform.$waiting" id="fileInput" required>
+
+                                        <input type="hidden" name="observationImage" ng-model="ol.observation_image">
+                                        <button type="button" class="btn btn-xs btn-primary pull-right" ng-click="uploadObservation(files)" id="uploadObservationPic" data-disablestat="false" ng-disabled="rowform.$waiting">Update</button>
+                                    </span>
+                                    </div>
+                                </td>
+
+                                <!-- STATUS -->
+                                <td><span ng-show="!rowform.$visible">{{ol.observation_status}}</span>
+                                    <select ng-model="ol.observation_status" name="observation_status" e-name="observation_status" e-form="rowform" class="form-control" required ng-show="rowform.$visible">
+                                        <option ng-repeat="item in observationStatus.availableOptions track by item.id" value="{{item.id}}" ng-selected="ol.observation_status == item.id">{{item.name}}
+                                        </option>
+                                    </select>
+                                </td>
+
+
+
+                                <td style="white-space: nowrap; width:90px;">
+
+                                    <!--*********************************************************-->
+                                    <!--****************    Save and Cancel buttons     ****************-->
+                                    <!--*********************************************************-->
+                                    <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline text-center" onaftersave="updateObservation(ol);">
+                                        <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary btn-sm ">
+                                            <span class="fa fa-fw fa-save"></span>
+                                        </button>
+                                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default btn-sm ">
+                                            <span class="fa fa-fw fa-close"></span>
+                                        </button>
+                                    </form>
+                                    <div class="buttons text-center" ng-show="!rowform.$visible">
+                                        <button class="btn btn-primary btn-sm " ng-click="rowform.$show()"><span class="fa fa-fw fa-pencil"></span></button>
+                                        <!--                                        <button class="btn btn-danger btn-sm " ng-click="deleteObservation(ol, $index)"><span class="fa fa-fw fa-trash" title="Delete"></span></button>-->
+                                    </div>
+                                    <!--
+                                        <form editable-form name="rowform" class="form-buttons form-inline" >
+                                             <button class="btn btn-sm btn-primary" ng-click="rowform.$show(); button=false" title="Click to Edit"  ng-show="!rowform.$visible" ><span class="fa fa-fw fa-pencil"></span></button>
+
+                                            <button class="btn btn-sm btn-danger" ng-click="removeUser($index)"  ng-show="!rowform.$visible" ><i class="fa fa-fw fa-trash" title="Delete"></i></button>
+
+                                        </form>
+-->
+
+                                    <!--*********************************************************-->
+                                    <!--****************    edit and delete buttons     ****************-->
+                                    <!--*********************************************************-->
+
+                                    <!--
+                                        <div class="buttons">
+                                             <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-sm btn-primary" ng-click="rowform.$show();"  ng-show="rowform.$visible"><span class="fa fa-fw fa-save"></span></button>
+
+                                            <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel();" class="btn btn-sm btn-danger"  ng-show="rowform.$visible"><span class="fa fa-fw fa-close"></span></button>
+
+                                        </div>
+-->
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Observations Modal -->
+<div class="modal fade" id="observation">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add Observation</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form action="" novalidate>
+                        <div class="col-lg-12">
+                            <div class="col-lg-5">
+                                <h4 style="float:right"> Add Picture </h4>
+                                <div class="pull-right" style="float:right">
+                                    <div class="image-border" style="float:right;">
+                                        <img ng-src="{{image1.compressed.dataURL}}" style="float:right" class="image-preview" />
+                                    </div>
+                                    <div class="mt5">
+                                        <input class="btn btn-primary btn-sm pt5 text-center" type="file" image="image1" ng-model="files" name="files" file-model="files" accept="image/*" resize-max-height="300" resize-max-width="300" resize-quality="0.7" resize-type="image/jpg" ng-image-compress style="float:right" required>
+
+                                        <input type="hidden" ng-model="obCredentials.observationPicture" name="observationPicture">
+                                    </div>
+                                    <div class="mt5">
+                                        <button type="button" ng-click="uploadObservation(files)" class="btn btn-primary btn-sm pull-right mt5" id="uploadObservationPic" data-disablestat="false" style="float:right">upload</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12  form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <h4>Location</h4>
+                                    <input name="observation_location" ng-model="obCredentials.observation_location" type="text" class="form-control input-sm" required>
+                                </div>
+                                <div class=" col-md-12 col-sm-12 col-xs-12">
+                                    <h4>Description</h4>
+                                    <textarea name="observation_description" ng-model="obCredentials.observation_description" rows="5" class="form-control input-sm " required></textarea>
+                                </div>
+                                <div class=" col-md-8 col-sm-12 col-xs-12">
+                                    <h4>Responsibility</h4>
+                                    <select name="observation_responsibility" ng-model="obCredentials.observation_responsibility" class="form-control input-sm" placeholder="Responsibility" required>
+                                        <option value="client">Client</option>
+                                        <option value="entec">Entec</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                    <h4>Priority</h4>
+                                    <select name="observation_priority" ng-model="obCredentials.observation_priority" class="form-control input-sm" placeholder="Priority" required>
+                                        <option value="high">High</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="low">Low</option>
+                                    </select>
+                                </div>
+                                <div class=" col-md-8 col-sm-12 col-xs-12">
+                                    <h4>Status</h4>
+                                    <select name="observation_status" ng-model="obCredentials.observation_status" class="form-control input-sm" placeholder="Status" required>
+                                        <option value="Completed">Completed</option>
+                                        <option value="Inprogress">In Progress</option>
+                                        <option value="Incomplete">Incomplete</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" ng-click="addObservation(obCredentials)" id="addObservation">Save </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Observations Modal -->
+
+
+<script type="text/ng-template" id="auditReport">
+    <div id="print-content">
+        <style>
+            @media print {
+                body * {
+                    visibility: hidden;
+                }
+                #print-content * {
+                    visibility: visible;
+                }
+                .modal {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    margin: 0;
+                    padding: 0;
+                    min-height: 550px
+                }
+                .modal-body {
+                    padding: 0px;
+                }
+            }
+
+        </style>
+        <div class="modal-header">
+            <h5><img src="img/entec.png" style="width:180px; height:85px;" alt=""><span style="margin-top:20px;"></span></h5>
+        </div>
+        <div class="modal-body">
+            <h1>{{auditName}}</h1>
+
+            <div class="row">
+                <h2>Disclaimer</h2>
+                <p>The assessors believe the information contained within this risk assessment report to be correct at the time of printing. The assessors do not accept responsibility for any consequences arising from the use of the information herein. The report is based on matters which were observed or came to the attention of the assessors during the day of the assessment and should not be relied upon as an exhaustive record of all possible risks or hazards that may exist or potential improvements that can be made. Information on the latest workers compensation and OHS / WHS laws can be found at the relevant State WorkCover / WorkSafe Authority.</p>
+                <h2>Confidentiality Statement </h2>
+                <p>In order to maintain the integrity and credibility of the risk assessment processes and to protect the parties involved, it is understood that the assessors will not divulge to unauthorized persons any information obtained during this risk assessment unless legally obligated to do so.
+                </p>
+            </div>
+            <div class="row">
+                <!--Info-->
+                <div class="col-md-12 col-sm-12 col-xs-12 pad_20 label-success white-txt">
+                    <div class=" col-md-6 col-sm-6 col-xs-12">
+                        <!--
+                        <div class="col-md-3 col-sm-4 col-xs-4">
+                            <img ng-src="{{client_logo}}" class="img-responsive" alt="" style="margin-top:21px">
+                        </div>
+-->
+                        <div class="col-md-9 col-sm-8 col-xs-8 no-padding">
+                            <h3 class="capitalize">{{client_name}}</h3>
+                            <h5 class="capitalize">{{client_location}}</h5>
+                            <h5 class="capitalize">{{client_address}}</h5>
+
+                            <div class="mt20">
+                                <h4>Place of Audit: <span class="capitalize">{{audit_location}}</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-md-6 col-sm-12 col-xs-12 ">
+                            <div class="row mt10">
+                                <h4>Contact Person</h4>
+                                <h5>Mr.{{client_contact_person}}</h5>
+                                <h5 class="capitalize">{{client_mobile}}</h5>
+                                <h5 class="capitalize">{{client_email || '' }}</h5>
+                            </div>
+                        </div>
+
+                        <div class=" col-md-6 col-sm-12 col-xs-12">
+                            <div class="row mt10">
+                                <h4>Audited By:</h4>
+                                <h4>{{ user_name || 'NA'}}</h4>
+                                <h5>Date : {{audit_date }} </h5>
+                                <h5>Time : {{audit_time | date:'HH:mm a'}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--**********  Observation list ********** -->
+            <div class="row pad_20 mt10">
+                <div class="col-lg-12 no-padding mt10">
+                    <div class="fixed-table-container">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Premises Location</th>
+                                    <th>Description</th>
+                                    <th>Responsibility</th>
+                                    <th>Priority</th>
+                                    <th>Photo</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="showMessage">
+                                    <td>
+                                        <h5 class="pad">{{msgText}}</h5></td>
+                                </tr>
+                                <tr ng-repeat="ol in ObservationList" last>
+                                    <td>{{ol.observation_location}}</td>
+                                    <td>{{ol.observation_description}}</td>
+                                    <td>{{ol.observation_responsibility}}</td>
+                                    <td>{{ol.observation_priority}}</td>
+                                    <td><img style="width:100px;max-height:150px;" class=" pull-left" src="{{ol.observation_image}}"></td>
+                                    <td>{{ol.observation_status}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="pull-left">
+                <h5>&#9400; entec <caption>2016</caption></h5>
+            </div>
+
+            <div class="pull-right hidden-print">
+                <button class="btn btn-primary" ng-click="ctrl.print()">Print</button>
+                <button class="btn btn-primary" ng-click="$close()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</script>

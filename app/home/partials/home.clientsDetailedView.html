@@ -1,0 +1,272 @@
+<div id="page-wrapper"  ng-controller="ClientsController">
+    <div class="panel panel-default" style="border-color: transparent;box-shadow:none">
+
+        <!-- Client Information -->
+
+        <form editable-form name="editableForm" onaftersave="updateClient(clientsDetail);" novalidate>
+
+            <div class="row pad mt5">
+                <div class="col-md-9 no-padding">
+                    <a ui-sref="home.clients" class="btn btn-sm btn-primary"> <span class="fa fa-fw fa-arrow-left"></span> Back </a>
+                </div>
+                <div class="col-md-3">
+                    <div class="pull-right  btn-group">
+
+                        <!--*********************************************************-->
+                        <!--****************    Edit and Delete buttons     ****************-->
+                        <!--*********************************************************-->
+
+                        <!-- button to DELETE -->
+                        <!-- <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#confirmation"> <span class="fa fa-fw fa-trash"></span> <span class="hidden-xs">Delete</span> </a>-->
+
+
+                        <!-- button to show form -->
+                        <button type="button" class="btn btn-sm btn-success" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+                            Edit
+                        </button>
+
+
+                        <!--*********************************************************-->
+                        <!--****************    Save and Cancel buttons     ****************-->
+                        <!--*********************************************************-->
+
+                        <span ng-show="editableForm.$visible">
+                            <button type="submit" id ="saveClientPic" class="btn btn-sm  btn-primary" ng-disabled="editableForm.$waiting">
+                              Save
+                            </button>
+
+                            <button type="button" class="btn btn-sm btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+                              Cancel
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--*********************************************************-->
+            <!--***********************  Client Description *********************** -->
+            <!--*****************************************************-->
+            <div class="row mt30">
+
+                <!--Info-->
+                <div class="col-md-12 col-sm-12 col-xs-12 pad_20 label-success white-txt">
+
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <h4> Profile Picture </h4>
+                        <div class="profilePic">
+                            <img ng-src="{{image1.compressed.dataURL || imageUrl + clientsDetail.client_logo}}" style="float:right" class="image-preview"/>
+                            <input type="hidden" ng-model="clientsDetail.client_logo">
+                        </div>
+                        <span ng-show="editableForm.$visible">
+                            <input class="btn btn-primary btn-sm pt5 text-center" type="file" image="image1" ng-model="files" name="files" file-model="files" accept="image/*" resize-max-height="150" resize-max-width="150" resize-quality="0.7" resize-type="image/jpg" ng-image-compress style="float:right; width:180px;" id="fileInput" required>
+                            
+                            <button type="button" class="btn btn-primary mt5 text-center" ng-click="upload(image1)" id="uploadClientPic" data-disablestat="false">Upload</button>
+                        </span>
+                    </div>
+
+                    <div class="col-md-10 col-sm-10 col-xs-12 no-padding">
+                        <div class="col-md-4 col-sm-8 col-xs-8 no-padding mt40">
+                            <!-- editable client_name (text with validation) -->
+                            <div class="form-group">
+                                <h6 class="title">Client Name  </h6>
+                                <span editable-text="clientsDetail.client_name" e-name="client_name" onbeforesave="" e-required><h3 class="capitalize" style="margin:0 0 20px;">{{ clientsDetail.client_name || 'empty' }}</h3></span>
+                            </div>
+
+                            <!-- editable client_location (text with validation) -->
+                            <div class="form-group">
+                                <h6 class="title">Client Location </h6>
+                                <span editable-text="clientsDetail.client_location" e-name="client_location" onbeforesave="" e-required><h3 class="capitalize" style="margin:0 0 20px;">{{ clientsDetail.client_location || 'empty' }}</h3></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6 no-padding mt40">
+                            <div class="form-group">
+                                <!-- editable Contact Person (text with validation) -->
+                                <h6>Contact Person</h6>
+                                <span editable-text="clientsDetail.client_contact_person" e-name="client_contact_person" onbeforesave="" e-required><h3 class="capitalize" style="margin:0 0 20px;">{{ clientsDetail.client_contact_person || 'empty' }}</h3></span>
+                            </div>
+                            <div class="form-group">
+                                <h6>Contact Number</h6>
+                                <span editable-text="clientsDetail.client_mobile" e-name="client_mobile" onbeforesave="" e-required><h3 class="capitalize" style="margin:0 0 20px;">{{ clientsDetail.client_mobile || 'empty' }}</h3></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6 col-xs-6 no-padding pull-right mt40">
+                            <div class="form-group">
+                                <h6>Address</h6>
+                                <span editable-text="clientsDetail.client_address" e-name="client_address" onbeforesave="" e-required><h3 class="capitalize" style="margin:0 0 20px;">{{ clientsDetail.client_address || 'empty' }}</h3></span>
+                            </div>
+
+                            <div class="form-group">
+                                <h6>Email</h6>
+                                <span editable-text="clientsDetail.client_email" e-name="email" onbeforesave="" e-required><h3  style="margin:0 0 20px;">{{ clientsDetail.client_email || '-' }}</h3></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+
+
+        <!--****************************************************-->
+        <!--***********************  Audit List *********************** -->
+        <!--****************************************************-->
+        <div class="row mt20 pad_20">
+            <div class="fixed-table-container">
+                <table class="table  table-no-bordered" data-toggle="table" data-toolbar="#toolbar" data-search="true" data-show-refresh="true" style="margin-bottom:0">
+                    <thead class="fixed-table-header">
+                        <tr>
+                            <th>Audit ID</th>
+                            <th>Client</th>
+                            <th>Location</th>
+                            <th>Auditor</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-show="showMessage">
+                            <td><h5 class="pad">{{msgText || 'loading...'}}</h5></td>
+                        </tr>
+                        <tr ng-repeat="al in AuditList">
+                            <td style="width:50px;"><h5 class="text-center capitalize">#{{al.audit_id || 'No Audit Info Found'}}</h5></td>
+                            <td><h5 class="text-center capitalize">{{al.client_name}}</h5></td>
+                            <td> <h5 class="text-center capitalize"><span class="fa fa-fw fa-map-marker "></span> {{al.audit_location}}</h5></td>
+                            <td><h5 class="text-center capitalize">{{al.user_name}}</h5></td>
+                            <td><h5 class="text-center capitalize"><span class="fa fa-fw fa-calendar"></span>{{al.audit_date | amDateFormat:'DD-MM-YYYY'}}</h5></td>
+                            <td><h5 class="text-center"><span class="fa fa-fw fa-clock-o"></span> {{al.audit_time | amDateFormat:'h:mm a'}}</h5></td>
+                            <td><h5 class="text-center capitalize"><span>{{al.audit_status}}</span></h5></td>
+                            <td class="center" style="width:90px;">
+                                <a class="btn btn-xs btn-info" title="View" ng-click="observationDetail(al, $index)"><span class="fa fa-fw fa-eye"></span></a>
+<!--                                <a class="btn btn-xs btn-danger" title="Delete" ng-click="deleteAudit(al, $index)"><span class="fa fa-fw fa-close"></span></a>-->
+                            </td>
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Observations Modal -->
+    <div class="modal fade" id="observation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Add Observation</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row ">
+                        <form action="">
+                            <div class="col-lg-12">
+                                <div class=" col-md-6 col-sm-12 col-xs-12">
+                                    <h4>Location</h4>
+                                    <input type="text" class="form-control input-sm" required>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class=" col-md-6 col-sm-12 col-xs-12 no-padding">
+                                        <h4>Description</h4>
+                                        <textarea name="" id="" rows="5" class="form-control input-sm " required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class=" col-md-6 col-sm-12 col-xs-12 no-padding">
+                                        <h4>Responaibility</h4>
+                                        <select name="" id="" class="formcontrol input-sm" placeholder="Responsibility" required>
+                                            <option value="client">Client</option>
+                                            <option value="entec">Entec</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="col-md-6 col-sm-12 col-xs-12 no-padding">
+                                        <h4>Priority</h4>
+                                        <select name="" id="" class="formcontrol input-sm" placeholder="Priority" required>
+                                            <option value="high">High</option>
+                                            <option value="medium">Medium</option>
+                                            <option value="low">Low</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class=" col-md-6 col-sm-12 col-xs-12 no-padding">
+                                        <h4>Status</h4>
+                                        <select name="" id="" class="formcontrol input-sm" placeholder="Status" required>
+                                            <option value="completed">Completed</option>
+                                            <option value="in-progress">In Progress</option>
+                                            <option value="incomplete">Incomplete</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class=" col-md-6 col-sm-12 col-xs-12 no-padding">
+                                        <h4>Photo</h4>
+                                        <input type="file" class="form-control input-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Observations Modal -->
+
+
+    <!--   Delete existing Client-->
+    <div class="modal fade" id="confirmation">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>Are you sure you want to delete?</h5>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="deleteClient()">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   Delete existing Client-->
+    <div class="modal fade" id="cropper">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="cropArea">
+                        <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+                    </div>
+                    <div>Cropped Image:</div>
+                    <div><img ng-src="{{myCroppedImage}}" /></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="deleteClient()">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>

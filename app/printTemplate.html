@@ -1,0 +1,112 @@
+<div id="divName">
+    <!--<script type="text/ng-template" id="auditReport">-->
+    <div class="container">
+<!--        <div class="panel noprint" id="auditInfo">-->
+<!--
+            <div class="row">
+                <div class="col-lg-12 footer">
+                    <h4 class="paragraphs">Audit Details</h4>
+                    <h5 class="capitalize paragraphs">Audit Title : {{auditName}}</h5>
+                    <h5 class="capitalize paragraphs">Email : {{email}}</h5>
+                    <h5 class="capitalize paragraphs">Emergency Contact : {{emergency_contact}}</h5>
+                    <h5 class="paragraphs">Audit Date: <span>{{audit_date | amDateFormat:'DD.MM.YYYY'}}</span></h5>
+                    <h5 class="paragraphs">Audit Time: <span>{{audit_time | amDateFormat:'hh:mm:ss'}}</span></h5></div>
+            </div>
+        </div>
+-->
+        <div class="panel noprint" id="disclaimer">
+            <div class="row">
+                <div class="col-lg-12 footer">
+                    <h2>Disclaimer</h2>
+                    <p>The assessors believe the information contained within this risk assessment report to be correct at the time of printing. The assessors do not accept responsibility for any consequences arising from the use of the information herein. The report is based on matters which were observed or came to the attention of the assessors during the day of the assessment and should not be relied upon as an exhaustive record of all possible risks or hazards that may exist or potential improvements that can be made. Information on the latest workers compensation and OHS / WHS laws can be found at the relevant State WorkCover / WorkSafe Authority.</p>
+                    <h2>Confidentiality Statement </h2>
+                    <p>In order to maintain the integrity and credibility of the risk assessment processes and to protect the parties involved, it is understood that the assessors will not divulge to unauthorized persons any information obtained during this risk assessment unless legally obligated to do so.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="panel no-border" style="margin: 100px 0 0 0px;">
+            <div class="row">
+            <h2 class="capitalize">{{auditName}}</h2>
+                <!--Info-->
+                <div class="col-md-6 col-sm-8 col-xs-8">
+                    <h4>Client Details</h4>
+                    <h5 class="capitalize">Client Name : {{client_name}}</h5>
+                    <h5 class="capitalize">Location : {{client_location}}</h5>
+                    <h5 class="capitalize">Address : {{client_address}}</h5>
+                    <h5>Place of Audit: <span class="capitalize">{{audit_location}}</span></h5>
+                    <h5>Client Address: <span class="capitalize">{{client_city}}, {{client_state}}</span></h5>
+                </div>
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class=" mt10">
+                        <h4>Contact Person</h4>
+                        <h5>{{client_contact_person}}</h5>
+                        <h5 class="capitalize">{{client_mobile}}</h5>
+                        <h5>{{client_email || '' }}</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="mt10">
+                        <h4 class="">Audit Details</h4>
+                        <h5 class="capitalize ">Audited By: {{ username }}</h5>
+                        <h5 class="capitalize ">Audit Title : {{auditName}}</h5>
+                        <h5 class="capitalize ">Email : {{email}}</h5>
+                        <h5 class="capitalize ">Emergency Contact : {{emergency_contact}}</h5>
+                        <h5 class="">Audit Date: <span>{{audit_date | amDateFormat:'DD.MM.YYYY'}}</span></h5>
+                        <h5 class="">Audit Time: <span>{{audit_time | amDateFormat:'hh:mm:ss'}}</span></h5></div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <!--**********  Observation list ********** -->
+        <div class="row mt10">
+            <div class="col-lg-12 mt10">
+                <div class="fixed-table-container">
+                    <table class="table table-striped page-break">
+                        <thead>
+                            <tr class="page-break">
+                                <th>Premises Location</th>
+                                <th>Description</th>
+                                <th>Responsibility</th>
+                                <th>Priority</th>
+                                <th>Photo</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="ol in ObservationList" class="page-break">
+                                <td>{{ol.observation_location}}</td>
+                                <td>{{ol.observation_description}}</td>
+                                <td>{{ol.observation_responsibility}}</td>
+                                <td>{{ol.observation_priority}}</td>
+                                <td><img style="width:100px;max-height:150px;" class=" pull-left" src="{{ol.observation_image}}"></td>
+                                <td>{{ol.observation_status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row footer">
+            <div class="col-lg-12 mt10">
+                <!--
+                    <div class="pull-left">
+                        <h5>&#9400; entec <caption>2016</caption></h5>
+                    </div>
+-->
+
+                <div class="pull-right hidden-print">
+                    <!--                        <a class="btn btn-primary" href="javascript:window.print()">Print</a>-->
+                    <button class="btn btn-primary" ng-click="print()">Print</button>
+                    <a ui-sref="home.auditDetailedView" class="btn btn-primary">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

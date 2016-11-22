@@ -1,0 +1,172 @@
+<div id="page-wrapper">
+    <div class="panel no-border pad">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 style="margin-top:5px;"><i class="fa fa-user fa-fw"></i> Users</h3>
+            </div>
+        </div>
+        <div class="row mt5 b-btm">
+            <div class="col-md-12 mb5">
+                <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#new_user"> <span class="fa fa-fw fa-plus"></span> New User</a>
+            </div>
+        </div>
+        <div class="row mt20">
+            <div class=" col-lg-12 mt20">
+                <div class="fixed-table-container">
+                    <table class="table  table-no-bordered" data-toggle="table" data-toolbar="#toolbar" data-search="true" data-show-refresh="true" style="margin-bottom:0">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <h5 class="text-center"><b>Users</b></h5></th>
+                                <th>
+                                    <h5 class="text-center"><b>Designation</b></h5></th>
+                                <th>
+                                    <h5 class="text-center"><b>Options</b></h5></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-show="showMessage">
+                                <td>
+                                    <h4 class="text-center capitalize pad">{{msgText || 'loading...'}}</h4></td>
+                            </tr>
+                            <tr ng-repeat="ul in UsersList">
+                                <td style="width:100px;" class="text-center"><img class="pad_5 img-circle" src="{{imageUrl +  ul.picture}}" alt="" style="width:60px;height:60px"></td>
+                                <td>
+                                    <h4 class="text-center capitalize">{{ul.username}}</h4></td>
+                                <td>
+                                    <h4 class="text-center capitalize">{{ul.designation}}</h4></td>
+                                <td class="center" style="width:100px;">
+                                    <a type="button" class=" btn btn-xs btn-info " title="View" ng-click="userDetail(ul, $index)"> <span class="fa fa-fw fa-eye"></span></a>
+                                    <!--
+                                   <a class="btn btn-xs btn-danger mt5"  title="Delete"  ng-click="deleteUser(ul, $index)"><span class="fa fa-fw fa-close"></span></a>
+                                    </a>
+    -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--
+        
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 box-shadow mar" ng-repeat="ul in UsersList[0]" ng-hide="$last">
+            <div class="row pad_5">
+                <div class="col-lg-2 no-padding">
+                <img class="pad_5" src="http://placehold.it/50x50" alt="">
+                </div>
+                <div class="col-lg-8 no-padding">
+                    <h3 class="pad_5 no-margin">{{ul.username}}</h3>
+                    <h5 class="pad_5 no-margin">{{ul.designation}}</h5>
+                </div>
+                <div class="col-lg-2">
+                    <a type="button" class=" btn btn-xs btn-info " title="View" ng-click="userDetail(ul, $index)"> <span class="fa fa-fw fa-eye"></span></a>
+                    <a class="btn btn-xs btn-danger mt5"  title="Delete"  ng-click="deleteUser(ul, $index)"><span class="fa fa-fw fa-close"></span></a>
+                </div>
+            </div>
+        </div>
+-->
+        </div>
+    </div>
+</div>
+
+<!--    Add New User-->
+<div class="modal" id="new_user">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><span class="fa fa-fw fa-plus"></span>New User</h4>
+            </div>
+
+            <form name="usersForm" id="usersForm" novalidate>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="pull-right" style="float:right">
+                                <h4 style="float:right"> Profile Picture </h4>
+                                <div class="profilePic" style="float:right;">
+                                    <img ng-src="{{image1.compressed.dataURL || imageUrl + user.client_logo}}" style="float:right" class="image-preview" />
+                                    <input type="hidden" ng-model="user.picture">
+                                </div>
+                                <div class="mt5">
+                                    <input class="btn btn-primary btn-sm pt5 text-center" type="file" image="image1" ng-model="files" name="files" file-model="files" accept="image/*" resize-max-height="300" resize-max-width="300" resize-quality="0.7" resize-type="image/jpg" ng-image-compress style="float:right" required>
+                                </div>
+                                <div class="mt5">
+                                    <button type="button" class="btn btn-primary mt5 text-center" ng-click="upload(image1)" id="uploadClientPic" data-disablestat="false">Upload</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12 form-group">
+                            <div class="col-lg-10 col-md-7 col-sm-10 col-xs-12 no-padding">
+                                <h4>Username</h4>
+                                <input type="text" placeholder="" class="input-xs form-control " name="username" ng-model="user.username">
+                            </div>
+
+                            <div class="col-lg-5 col-md-7 col-sm-10 col-xs-12 no-padl">
+                                <h4>Designation</h4>
+                                <select name="designation" ng-model="user.designation" id="" class="form-control input-xs">
+                                    <option value="">Select one</option>
+                                    <!--
+                                            <option value="Sales Representative">Sales Representative</option>
+                                            <option value="Technician">Technician</option>
+                                            <option value="Senior Technician">Senior Technician</option>
+-->
+                                    <option value="Site Supervisor">Site Supervisor</option>
+                                    <!--
+                                            <option value="Operations Manager">Operations Manager</option>
+                                            <option value="Operations Executive">Operations Executive</option>
+-->
+
+                                </select>
+                            </div>
+                            <div class="col-lg-5 col-md-7 col-sm-10 col-xs-12 no-padr">
+                                <h4>Date of Birth</h4>
+                                <input type="text" name="dob" ng-model="user.dob" ui-date="dateOptions" class="form-control input-sm" placeholder="Start Date" required />
+                            </div>
+                            <div class="col-lg-5 col-md-7 col-sm-10 col-xs-12 no-padl">
+                                <h4>Gender</h4>
+                                <select name="gender" ng-model="user.gender" id="" class="form-control input-xs">
+                                    <option value="">Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-5 col-md-7 col-sm-10 col-xs-12 no-padr">
+                                <h4>Date of Joining</h4>
+                                <input type="text" name="doj" ng-model="user.doj" ui-date="dateOptions" class="form-control input-sm" placeholder="Start Date" required />
+                            </div>
+
+                            <div class="col-lg-5 col-md-7 col-sm-10 col-xs-12 no-padl">
+                                <h4>Emergency Contact</h4>
+                                <input name="emergencycontact" ng-model="user.emergencycontact" type="number" placeholder="" class="input-xs form-control">
+                            </div>
+
+                            <div class="col-lg-5 col-md-7 col-sm-10 col-xs-12 no-padr">
+                                <h4>Mobile</h4>
+                                <input name="mobile" ng-model="user.mobile" type="number" placeholder="" class="input-xs form-control">
+                            </div>
+
+                            <div class="col-lg-5 col-md-7 col-sm-10 col-xs-12 no-padl">
+                                <h4>Email</h4>
+                                <input name="email" ng-model="user.email" type="text" placeholder="" class="input-xs form-control">
+                            </div>
+
+
+                            <div class="col-lg-10 form-group no-padding">
+                                <h4>Address</h4>
+                                <textarea name="address" ng-model="user.address" id="" class="form-control input-xs" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" ng-click="createUser(user)" id="addUser">Add User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

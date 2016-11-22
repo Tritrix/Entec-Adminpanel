@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Entec - AdminPanel</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS Libraries   -->
+    <link rel="stylesheet" href="libraries/plugins/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="libraries/css/style.css">
+    <link rel="stylesheet" href="libraries/css/printCss.css">
+    <link rel="stylesheet" href="libraries/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="libraries/plugins/cropper/cropper.min.css">
+    <link rel="stylesheet" href="libraries/plugins/bootstrap-table/bootstrap-table.css" type="text/css">
+    <link rel="stylesheet" href="libraries/plugins/angular-xeditable-0.1.8/xeditable.css" type="text/css">
+    <link rel="stylesheet" href="libraries/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" type="text/css">
+    <!-- Custom Fonts -->
+<!--    <link rel="stylesheet" href="libraries/plugins/angular-LoadingBar/loading-bar.css" type="text/css">-->
+    <link rel="stylesheet" href="libraries/plugins/font-awesome/css/font-awesome.min.css" type="text/css">
+<!--    <link rel="stylesheet" href="libraries/plugins/image%2520crop/imageCrop.css" type="text/css">-->
+
+    <style>
+        alert {
+            z-index: 10000000;
+            visibility: hidden;
+        }
+        
+        input.ng-invalid.ng-dirty {
+            border-color: red;
+            -moz-box-shadow: inset 1px 1px 100px rgba(255, 0, 0, 0.20);
+            -webkit-box-shadow: inset 1px 1px 100px rgba(255, 0, 0, 0.20);
+            box-shadow: inset 1px 1px 100px rgba(255, 0, 0, 0.20);
+        }
+        
+        select.ng-invalid.ng-dirty {
+            border-color: red;
+            -moz-box-shadow: inset 1px 1px 100px rgba(255, 0, 0, 0.20);
+            -webkit-box-shadow: inset 1px 1px 100px rgba(255, 0, 0, 0.20);
+            box-shadow: inset 1px 1px 100px rgba(255, 0, 0, 0.20);
+        }
+        
+        input.ng-valid.ng-dirty {
+            border-color: green;
+            -moz-box-shadow: inset 1px 1px 100px rgb(228, 244, 166);
+            -webkit-box-shadow: inset 1px 1px 100px rgb(228, 244, 166);
+            box-shadow: inset 1px 1px 100px rgb(228, 244, 166);
+        }
+        
+        select.ng-valid.ng-dirty {
+            border-color: green;
+            -moz-box-shadow: inset 1px 1px 100px rgb(228, 244, 166);
+            -webkit-box-shadow: inset 1px 1px 100px rgb(228, 244, 166);
+            box-shadow: inset 1px 1px 100px rgb(228, 244, 166);
+        }
+        
+        .alertRed {
+            border-color: red;
+            -moz-box-shadow: inset 1px 1px 100px rgba(255, 0, 0, 0.20);
+            -webkit-box-shadow: inset 1px 1px 100px rgba(255, 0, 0, 0.20);
+            box-shadow: inset 1px 1px 100px rgba(255, 0, 0, 0.20);
+        }
+        
+        .errorNotify {
+            color: #ea2222;
+            padding: 1px 4px;
+            z-index: 1029;
+            position: absolute;
+            margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+
+<body data-ng-controller="AppController" ng-app="Entec">
+   
+    <div class="alerts alert-info" style="position:fixed;"><span class="text-center">{{notificationMsg}}</span></div>
+    <div ui-view></div>
+
+
+
+    <!-- Script tags to include libraries   -->
+    <script type="text/javascript" src="libraries/plugins/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="libraries/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="libraries/js/moment.js"></script>
+    <script type="text/javascript" src="libraries/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="libraries/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="libraries/plugins/cropper/cropper.min.js"></script>
+
+    <script type="text/javascript" src="libraries/js/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="libraries/plugins/ui-bootstrap-tpls-0.14.3.js"></script>
+    <script type="text/javascript" src="libraries/js/angularMoment.js"></script>
+
+    <script type="text/javascript" src="libraries/plugins/angularFileUpload/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="libraries/plugins/angularFileUpload/ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="libraries/plugins/angularFileUpload/upload.js"></script>
+    <script type="text/javascript" src="libraries/plugins/angular-xeditable-0.1.8/xeditable.js"></script>
+    <script type="text/javascript" src="libraries/js/angular-ui-router/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="libraries/js/ngstorage/ngStorage.min.js"></script>
+<!--    <script type="text/javascript" src="libraries/plugins/imageCrop.js"></script>-->
+
+    <script type="text/javascript" src="libraries/plugins/angular-ui-date/date.js"></script>
+    <script type="text/javascript" src="libraries/plugins/validation-match.js"></script>
+    <script type="text/javascript" src="libraries/plugins/bootstrap-table/bootstrap-table-all.js"></script>
+    <script type="text/javascript" src="libraries/plugins/bootstrap-table/locale/bootstrap-table-en-US.min.js"></script>
+    <script type="text/javascript" src="libraries/plugins/angularImageCompression.js"></script>
+
+<!--    <script type="text/javascript" src="libraries/plugins/angular-LoadingBar/loading-bar.js"></script>-->
+
+    <!-- Main App JS   -->
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/routes.js"></script>
+
+    <!-- Controller JS   -->
+    <script type="text/javascript" src="app/global/AppController.js"></script>
+    <script type="text/javascript" src="app/login/LoginController.js"></script>
+    <script type="text/javascript" src="app/logout/LogoutController.js"></script>
+    <script type="text/javascript" src="app/home/AuditsController.js"></script>
+    <script type="text/javascript" src="app/home/ObservationController.js"></script>
+    <script type="text/javascript" src="app/clients/ClientsController.js"></script>
+    <script type="text/javascript" src="app/clients/ClientsDetailedViewController.js"></script>
+    <script type="text/javascript" src="app/users/UserController.js"></script>
+    <script type="text/javascript" src="app/users/DetailedUsersController.js"></script>
+    <script type="text/javascript" src="app/PrintController.js"></script>
+
+
+    <!-- Services JS   -->
+    <script type="text/javascript" src="app/global/DataService.js"></script>
+    <script type="text/javascript" src="app/global/RoutingService.js"></script>
+    <script type="text/javascript" src="app/login/LoginService.js"></script>
+    <script type="text/javascript" src="app/logout/LogoutService.js"></script>
+    <script type="text/javascript" src="app/home/AuditsService.js"></script>
+    <script type="text/javascript" src="app/home/ObservationService.js"></script>
+    <script type="text/javascript" src="app/clients/ClientsService.js"></script>
+    <script type="text/javascript" src="app/clients/ClientsDetailedViewService.js"></script>
+    <script type="text/javascript" src="app/users/UserService.js"></script>
+    <script type="text/javascript" src="app/users/ListUsersService.js"></script>
+    <script type="text/javascript" src="app/DateTimeSplitterService.js"></script>
+
+    <!-- Factory JS   -->
+
+    <!-- Directive JS   -->
+
+
+    <!--*******************************************************************-->
+    <!--*************************    Developed By Tritrix.com   *************************-->
+    <!--********************************************************************-->
+
+</body>
+
+</html>
